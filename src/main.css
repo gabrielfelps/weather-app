@@ -37,4 +37,9 @@
   body {
     @apply bg-neutral-900 text-neutral-0 font-dm antialiased;
   }
+
+  img {
+    -webkit-user-drag: none;
+    @apply select-none;
+  }
 }
