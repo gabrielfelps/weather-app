@@ -25,18 +25,34 @@ function UnitsMenu() {
     ? 'Switch to Metrics'
     : 'Switch to Imperial';
 
-  const onClick = () => {
+  const switchMetrics = (imperialFutureState) => {
+    imperialFutureState
+      ? setRadioOptions({
+          temperature: 'fahrenheit',
+          windspeed: 'mph',
+          precipitation: 'inch',
+        })
+      : setRadioOptions({
+          temperature: 'celsius',
+          windspeed: 'kmh',
+          precipitation: 'mm',
+        });
+  };
+
+  const handleClick = () => {
     setIsDropdownOpen((prev) => !prev);
   };
 
-  const changeUnit = () => {
-    setIsImperial((prev) => !prev);
+  const handleUnitChange = () => {
+    const imperialFutureState = !isImperial;
+    setIsImperial(imperialFutureState);
+    switchMetrics(imperialFutureState);
   };
 
   return (
     <div className="relative flex flex-col">
       <button
-        onClick={onClick}
+        onClick={handleClick}
         className="flex justify-center items-center gap-1.5 px-2.5 py-2 bg-neutral-800 rounded-md hover:bg-neutral-700 hover:cursor-pointer"
       >
         <img src={cog} alt="" />
@@ -47,11 +63,12 @@ function UnitsMenu() {
       {isDropdownOpen && (
         <div className="absolute right-0 top-full mt-2.5 flex flex-col items-start gap-1 px-2 py-1.5 bg-neutral-800 border border-neutral-600 rounded-xl w-53.5 shadow-[0_8px_16px_0_rgba(2,1,44,0.32)]">
           <button
-            onClick={changeUnit}
+            onClick={handleUnitChange}
             className="w-full text-left px-2 py-2.5 rounded-lg hover:bg-neutral-700 hover:cursor-pointer"
           >
             {switchMetricsButtonlabel}
           </button>
+
           <fieldset className="w-full">
             <UnitsMenuTitle>Temperature</UnitsMenuTitle>
 
