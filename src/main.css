@@ -35,7 +35,7 @@
 
 @layer base {
   body {
-    @apply bg-neutral-900 text-neutral-0 font-dm antialiased;
+    @apply bg-neutral-900 text-neutral-0 font-dm font-medium not-italic antialiased;
   }
 
   img {
