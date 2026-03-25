@@ -6,7 +6,9 @@ import { WeatherContext } from '../../context/WeatherContext';
 
 function UnitsMenuTitle({ children }) {
   return (
-    <legend className="text-sm text-neutral-300 px-2 pt-1.5">{children}</legend>
+    <legend className="text-sm text-neutral-300 px-2 pt-1.5 hover:cursor-default">
+      {children}
+    </legend>
   );
 }
 
@@ -35,7 +37,7 @@ function UnitsMenu() {
     <div className="relative flex flex-col">
       <button
         onClick={onClick}
-        className="flex justify-center items-center gap-1.5 px-2.5 py-2 rounded-md bg-neutral-800"
+        className="flex justify-center items-center gap-1.5 px-2.5 py-2 bg-neutral-800 rounded-md hover:bg-neutral-700 hover:cursor-pointer"
       >
         <img src={cog} alt="" />
         Units
@@ -44,10 +46,13 @@ function UnitsMenu() {
 
       {isDropdownOpen && (
         <div className="absolute right-0 top-full mt-2.5 flex flex-col items-start gap-1 px-2 py-1.5 bg-neutral-800 border border-neutral-600 rounded-xl w-53.5 shadow-[0_8px_16px_0_rgba(2,1,44,0.32)]">
-          <button onClick={changeUnit} className="px-2 py-2.5">
+          <button
+            onClick={changeUnit}
+            className="w-full text-left px-2 py-2.5 rounded-lg hover:bg-neutral-700 hover:cursor-pointer"
+          >
             {switchMetricsButtonlabel}
           </button>
-          <fieldset>
+          <fieldset className="w-full">
             <UnitsMenuTitle>Temperature</UnitsMenuTitle>
 
             <UnitsMenuRadio
@@ -69,7 +74,7 @@ function UnitsMenu() {
             />
           </fieldset>
 
-          <fieldset>
+          <fieldset className="w-full">
             <UnitsMenuTitle>Wind Speed</UnitsMenuTitle>
 
             <UnitsMenuRadio
@@ -91,7 +96,7 @@ function UnitsMenu() {
             />
           </fieldset>
 
-          <fieldset>
+          <fieldset className="w-full">
             <UnitsMenuTitle>Precipitation</UnitsMenuTitle>
 
             <UnitsMenuRadio

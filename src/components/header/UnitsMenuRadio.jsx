@@ -1,3 +1,5 @@
+import checkmark from '../../assets/images/icon-checkmark.svg';
+
 function UnitsMenuRadio({ name, id, value, onChange, checked, labelName }) {
   return (
     <div>
@@ -11,8 +13,12 @@ function UnitsMenuRadio({ name, id, value, onChange, checked, labelName }) {
         checked={checked}
       />
 
-      <label className="flex px-2 py-2.5" htmlFor={id}>
+      <label
+        className={`flex gap-2.5 justify-between px-2 py-2.5 hover:cursor-pointer ${checked ? 'bg-neutral-700 rounded-lg' : ''}`}
+        htmlFor={id}
+      >
         {labelName}
+        {checked && <img src={checkmark} alt="" />}
       </label>
     </div>
   );
