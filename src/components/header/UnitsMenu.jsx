@@ -14,8 +14,10 @@ function UnitsMenuTitle({ children }) {
 
 function UnitsMenu() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isImperial, setIsImperial] = useState(false);
   const { radioOptions, setRadioOptions } = useContext(WeatherContext);
+  const [isImperial, setIsImperial] = useState(
+    radioOptions.temperature === 'fahrenheit',
+  );
 
   const handleRadioChange = (e) => {
     setRadioOptions((prev) => ({ ...prev, [e.target.name]: e.target.value }));
