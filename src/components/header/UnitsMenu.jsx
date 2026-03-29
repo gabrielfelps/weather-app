@@ -2,7 +2,7 @@ import cog from '../../assets/images/icon-units.svg';
 import icon_dropdown from '../../assets/images/icon-dropdown.svg';
 import UnitsMenuRadio from './UnitsMenuRadio';
 import { useState, useContext } from 'react';
-import { WeatherContext } from '../../context/WeatherContext';
+import { PreferencesContext } from '../../context/PreferencesContext';
 
 function UnitsMenuTitle({ children }) {
   return (
@@ -14,7 +14,7 @@ function UnitsMenuTitle({ children }) {
 
 function UnitsMenu() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const { radioOptions, setRadioOptions } = useContext(WeatherContext);
+  const { radioOptions, setRadioOptions } = useContext(PreferencesContext);
   const [isImperial, setIsImperial] = useState(
     radioOptions.temperature === 'fahrenheit',
   );

@@ -1,9 +1,9 @@
 import { useState, createContext, useEffect } from 'react';
 
 // eslint-disable-next-line react-refresh/only-export-components
-export const WeatherContext = createContext();
+export const PreferencesContext = createContext();
 
-export function WeatherProvider({ children }) {
+export function PreferencesProvider({ children }) {
   const [radioOptions, setRadioOptions] = useState(() => {
     const savedUserSettings = localStorage.getItem('weatherUnits');
 
@@ -24,8 +24,8 @@ export function WeatherProvider({ children }) {
   }, [radioOptions]);
 
   return (
-    <WeatherContext.Provider value={{ radioOptions, setRadioOptions }}>
+    <PreferencesContext.Provider value={{ radioOptions, setRadioOptions }}>
       {children}
-    </WeatherContext.Provider>
+    </PreferencesContext.Provider>
   );
 }

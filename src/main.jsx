@@ -1,12 +1,15 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
-import { WeatherProvider } from './context/WeatherContext.jsx';
+import { PreferencesProvider } from './context/PreferencesContext.jsx';
+import { WeatherDataProvider } from './context/WeatherDataContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <WeatherProvider>
-      <App />
-    </WeatherProvider>
+    <WeatherDataProvider>
+      <PreferencesProvider>
+        <App />
+      </PreferencesProvider>
+    </WeatherDataProvider>
   </StrictMode>,
 );
