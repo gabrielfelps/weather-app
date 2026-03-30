@@ -31,6 +31,9 @@
 
   --font-bricolage: 'Bricolage Grotesque', sans-serif;
   --font-dm: 'DM Sans', sans-serif;
+
+  --text-2_5xl: 1.75rem;
+  --text-2_5xl--line-height: calc(2 / 1.75);
 }
 
 @layer base {
@@ -41,5 +44,15 @@
   img {
     -webkit-user-drag: none;
     @apply select-none;
+  }
+}
+
+.bg-weather-board {
+  background-image: url('./assets/images/bg-today-small.svg');
+}
+
+@media (min-width: 768px) {
+  .bg-weather-board {
+    background-image: url('./assets/images/bg-today-large.svg');
   }
 }
