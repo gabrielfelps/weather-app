@@ -3,7 +3,7 @@ import UnitsMenu from './UnitsMenu';
 
 function Header() {
   return (
-    <header className="flex justify-between items-center self-stretch">
+    <header className="flex justify-between items-center self-stretch z-50">
       <AppLogo />
       <UnitsMenu />
     </header>
