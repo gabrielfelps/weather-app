@@ -1,4 +1,5 @@
 import CurrentWeatherBoard from './CurrentWeatherBoard';
+import DailyForescastList from './DailyForescastList';
 import WeatherDetails from './WeatherDetails';
 
 function WeatherComponents() {
@@ -6,6 +7,7 @@ function WeatherComponents() {
     <section className="mt-8">
       <CurrentWeatherBoard />
       <WeatherDetails />
+      <DailyForescastList />
     </section>
   );
 }
