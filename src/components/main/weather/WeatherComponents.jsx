@@ -1,5 +1,6 @@
 import CurrentWeatherBoard from './CurrentWeatherBoard';
 import DailyForescastList from './DailyForescastList';
+import HourlyForecastList from './HourlyForecastList';
 import WeatherDetails from './WeatherDetails';
 
 function WeatherComponents() {
@@ -8,6 +9,7 @@ function WeatherComponents() {
       <CurrentWeatherBoard />
       <WeatherDetails />
       <DailyForescastList />
+      <HourlyForecastList />
     </section>
   );
 }
