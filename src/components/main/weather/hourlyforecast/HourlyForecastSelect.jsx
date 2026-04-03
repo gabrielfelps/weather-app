@@ -5,7 +5,7 @@ import {
   ListboxOptions,
 } from '@headlessui/react';
 import { useState } from 'react';
-import icon_dropdown from '../../../assets/images/icon-dropdown.svg';
+import icon_dropdown from '../../../../assets/images/icon-dropdown.svg';
 
 const weekDays = [
   {

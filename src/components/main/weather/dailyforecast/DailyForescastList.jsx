@@ -1,12 +1,12 @@
 // Temporary code to test the component layout.
 import DailyForecastCard from './DailyForecastCard';
-import tue from '../../../assets/images/icon-rain.webp';
-import wed from '../../../assets/images/icon-drizzle.webp';
-import thu from '../../../assets/images/icon-sunny.webp';
-import fri from '../../../assets/images/icon-partly-cloudy.webp';
-import sat from '../../../assets/images/icon-storm.webp';
-import sun from '../../../assets/images/icon-snow.webp';
-import mon from '../../../assets/images/icon-fog.webp';
+import tue from '../../../../assets/images/icon-rain.webp';
+import wed from '../../../../assets/images/icon-drizzle.webp';
+import thu from '../../../../assets/images/icon-sunny.webp';
+import fri from '../../../../assets/images/icon-partly-cloudy.webp';
+import sat from '../../../../assets/images/icon-storm.webp';
+import sun from '../../../../assets/images/icon-snow.webp';
+import mon from '../../../../assets/images/icon-fog.webp';
 
 const weekDaysWeather = [
   {

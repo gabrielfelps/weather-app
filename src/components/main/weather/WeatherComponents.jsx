@@ -1,7 +1,7 @@
 import CurrentWeatherBoard from './CurrentWeatherBoard';
-import DailyForescastList from './DailyForescastList';
-import HourlyForecastList from './HourlyForecastList';
-import WeatherDetails from './WeatherDetails';
+import DailyForescastList from '../weather/dailyforecast/DailyForescastList';
+import HourlyForecastList from '../weather/hourlyforecast/HourlyForecastList';
+import WeatherDetails from '../weather/weatherdetails/WeatherDetails';
 
 function WeatherComponents() {
   return (

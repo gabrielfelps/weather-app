@@ -1,10 +1,10 @@
 // Temporary code to test the component layout.
 import HourlyForecastCard from './HourlyForecastCard';
-import sunny from '../../../assets/images/icon-sunny.webp';
-import partly_cloudy from '../../../assets/images/icon-partly-cloudy.webp';
-import snow from '../../../assets/images/icon-snow.webp';
-import fog from '../../../assets/images/icon-fog.webp';
-import overcast from '../../../assets/images/icon-overcast.webp';
+import sunny from '../../../../assets/images/icon-sunny.webp';
+import partly_cloudy from '../../../../assets/images/icon-partly-cloudy.webp';
+import snow from '../../../../assets/images/icon-snow.webp';
+import fog from '../../../../assets/images/icon-fog.webp';
+import overcast from '../../../../assets/images/icon-overcast.webp';
 import HourlyForecastSelect from './HourlyForecastSelect';
 
 const hourlyForecast = [
