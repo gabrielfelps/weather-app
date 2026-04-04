@@ -11,17 +11,22 @@ function Search() {
     setsearchQuery(e.target.value);
   };
 
-  const handleClick = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     if (!searchQuery) return;
 
     fetchWeatherData(searchQuery);
   };
 
   return (
-    <div className="flex flex-col gap-4 w-full mx-auto md:flex-row md:justify-between lg:max-w-158">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-4 w-full mx-auto md:flex-row md:justify-between lg:max-w-158"
+    >
       <SearchBar searchQuery={searchQuery} onSearchChange={onSearchChange} />
-      <SearchButton onClick={handleClick} />
-    </div>
+      <SearchButton />
+    </form>
   );
 }
 
