@@ -4,27 +4,26 @@ import { useState, createContext, useEffect } from 'react';
 export const PreferencesContext = createContext();
 
 export function PreferencesProvider({ children }) {
-  const [radioOptions, setRadioOptions] = useState(() => {
-    const savedUserSettings = localStorage.getItem('weatherUnits');
+  const [isMetricSystem, setIsMetricSystem] = useState(() => {
+    const savedUserSettings = localStorage.getItem('isMetric');
 
-    if (!savedUserSettings) {
-      return {
-        temperature: 'celsius',
-        windspeed: 'kmh',
-        precipitation: 'mm',
-      };
+    if (savedUserSettings === null) {
+      return true;
     }
 
-    return JSON.parse(savedUserSettings);
+    return savedUserSettings === 'true';
   });
 
   useEffect(() => {
-    const userSettings = JSON.stringify(radioOptions);
-    localStorage.setItem('weatherUnits', userSettings);
-  }, [radioOptions]);
+    localStorage.setItem('isMetric', isMetricSystem);
+  }, [isMetricSystem]);
+
+  const toggleUnitSystem = () => {
+    setIsMetricSystem((prev) => !prev);
+  };
 
   return (
-    <PreferencesContext.Provider value={{ radioOptions, setRadioOptions }}>
+    <PreferencesContext.Provider value={{ isMetricSystem, toggleUnitSystem }}>
       {children}
     </PreferencesContext.Provider>
   );
