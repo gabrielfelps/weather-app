@@ -1,41 +1,65 @@
 import { useState } from 'react';
 
 export default function useWeather() {
-  const [weatherData, setWeatherData] = useState(null);
+  const [isSearchingCities, setIsSearchingCities] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [foundResults, setFoundResults] = useState(null);
+  const [foundResults, setFoundResults] = useState(false);
   const [apiError, setApiError] = useState(false);
+  const [citySuggestions, setCitySuggestions] = useState([]);
+  const [weatherData, setWeatherData] = useState(null);
 
-  async function fetchWeatherData(cityName) {
+  async function fetchCitySuggestions(city) {
     try {
-      setIsLoading(true);
-      setApiError(false);
-      setFoundResults(null);
+      setIsSearchingCities(true);
 
-      const responseGeoCoding = await fetch(
-        `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(cityName)}&count=1&language=en&format=json`,
+      const response = await fetch(
+        `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=4&language=en&format=json`,
       );
-      if (!responseGeoCoding.ok)
+      if (!response.ok)
         throw new Error('Something went wrong with the GeoCoding API!');
 
-      const dataGeocoding = await responseGeoCoding.json();
-      if (!dataGeocoding.results) {
+      const { results } = await response.json();
+      if (!results) {
         setFoundResults(false);
+        setCitySuggestions([]);
         return;
       }
 
-      const latitude = dataGeocoding.results[0].latitude;
-      const longitude = dataGeocoding.results[0].longitude;
-
-      const responseOpenMeteo = await fetch(
-        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,wind_speed_10m&hourly=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto`,
+      const data = results.map(
+        ({ name, latitude, longitude, country, admin1 }) => ({
+          name,
+          latitude,
+          longitude,
+          country,
+          admin1,
+        }),
       );
-      if (!responseOpenMeteo.ok)
+
+      setCitySuggestions(data);
+      setFoundResults(true);
+    } catch (error) {
+      console.error(error);
+      setApiError(true);
+    } finally {
+      setIsSearchingCities(false);
+    }
+  }
+
+  async function fetchWeatherData(lat, lon) {
+    try {
+      setIsLoading(true);
+      setApiError(false);
+      setCitySuggestions([]);
+
+      const response = await fetch(
+        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,wind_speed_10m&hourly=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto`,
+      );
+      if (!response.ok)
         throw new Error('Something went wrong with the OpenMeteo API!');
 
-      const dataOpenMeteo = await responseOpenMeteo.json();
+      const data = await response.json();
 
-      setWeatherData(dataOpenMeteo);
+      setWeatherData(data);
       setFoundResults(true);
     } catch (error) {
       console.error(error);
@@ -45,5 +69,45 @@ export default function useWeather() {
     }
   }
 
-  return { weatherData, isLoading, foundResults, apiError, fetchWeatherData };
+  async function fetchWeatherByButton(city) {
+    try {
+      setCitySuggestions([]);
+      setIsLoading(true);
+      setApiError(false);
+
+      const response = await fetch(
+        `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&language=en&format=json`,
+      );
+      if (!response.ok)
+        throw new Error('Something went wrong with the GeoCoding API!');
+
+      const { results } = await response.json();
+      if (!results) {
+        setFoundResults(false);
+        return;
+      }
+
+      const lat = results[0].latitude;
+      const lon = results[0].longitude;
+
+      await fetchWeatherData(lat, lon);
+    } catch (error) {
+      console.error(error);
+      setApiError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  return {
+    weatherData,
+    isLoading,
+    isSearchingCities,
+    foundResults,
+    apiError,
+    citySuggestions,
+    fetchCitySuggestions,
+    fetchWeatherData,
+    fetchWeatherByButton,
+  };
 }

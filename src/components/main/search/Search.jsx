@@ -5,7 +5,7 @@ import { WeatherDataContext } from '../../../context/WeatherDataContext';
 
 function Search() {
   const [searchQuery, setsearchQuery] = useState('');
-  const { fetchWeatherData } = useContext(WeatherDataContext);
+  const { fetchWeatherByButton } = useContext(WeatherDataContext);
 
   const onSearchChange = (e) => {
     setsearchQuery(e.target.value);
@@ -16,7 +16,7 @@ function Search() {
 
     if (!searchQuery) return;
 
-    fetchWeatherData(searchQuery);
+    fetchWeatherByButton(searchQuery);
   };
 
   return (

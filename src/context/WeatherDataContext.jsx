@@ -5,17 +5,30 @@ import useWeather from '../hooks/useWeather';
 export const WeatherDataContext = createContext();
 
 export function WeatherDataProvider({ children }) {
-  const { weatherData, isLoading, foundResults, apiError, fetchWeatherData } =
-    useWeather();
+  const {
+    weatherData,
+    isLoading,
+    isSearchingCities,
+    foundResults,
+    apiError,
+    citySuggestions,
+    fetchCitySuggestions,
+    fetchWeatherData,
+    fetchWeatherByButton,
+  } = useWeather();
 
   return (
     <WeatherDataContext.Provider
       value={{
         weatherData,
         isLoading,
+        isSearchingCities,
         foundResults,
         apiError,
+        citySuggestions,
+        fetchCitySuggestions,
         fetchWeatherData,
+        fetchWeatherByButton,
       }}
     >
       {children}
