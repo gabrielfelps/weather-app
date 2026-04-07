@@ -1,11 +1,18 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import SearchBar from './SearchBar';
 import SearchButton from './SearchButton';
 import { WeatherDataContext } from '../../../context/WeatherDataContext';
+import useDebounce from '../../../hooks/useDebounce';
 
 function Search() {
   const [searchQuery, setsearchQuery] = useState('');
-  const { fetchWeatherByButton } = useContext(WeatherDataContext);
+  const debouncedValue = useDebounce(searchQuery);
+  const { fetchCitySuggestions, fetchWeatherByButton } =
+    useContext(WeatherDataContext);
+
+  useEffect(() => {
+    fetchCitySuggestions(debouncedValue);
+  }, [fetchCitySuggestions, debouncedValue]);
 
   const onSearchChange = (e) => {
     setsearchQuery(e.target.value);

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export default function useWeather() {
   const [isSearchingCities, setIsSearchingCities] = useState(false);
@@ -8,7 +8,12 @@ export default function useWeather() {
   const [citySuggestions, setCitySuggestions] = useState([]);
   const [weatherData, setWeatherData] = useState(null);
 
-  async function fetchCitySuggestions(city) {
+  const fetchCitySuggestions = useCallback(async (city) => {
+    if (!city.trim()) {
+      setCitySuggestions([]);
+      return;
+    }
+
     try {
       setIsSearchingCities(true);
 
@@ -43,7 +48,7 @@ export default function useWeather() {
     } finally {
       setIsSearchingCities(false);
     }
-  }
+  }, []);
 
   async function fetchWeatherData(lat, lon) {
     try {
