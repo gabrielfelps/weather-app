@@ -3,11 +3,12 @@ import SearchBar from './SearchBar';
 import SearchButton from './SearchButton';
 import { WeatherDataContext } from '../../../context/WeatherDataContext';
 import useDebounce from '../../../hooks/useDebounce';
+import SearchCityDropdown from './SearchCityDropdown';
 
 function Search() {
   const [searchQuery, setsearchQuery] = useState('');
   const debouncedValue = useDebounce(searchQuery);
-  const { fetchCitySuggestions, fetchWeatherByButton } =
+  const { fetchCitySuggestions, citySuggestions, fetchWeatherByButton } =
     useContext(WeatherDataContext);
 
   useEffect(() => {
@@ -31,7 +32,12 @@ function Search() {
       onSubmit={handleSubmit}
       className="flex flex-col gap-4 w-full mx-auto md:flex-row md:justify-between lg:max-w-158"
     >
-      <SearchBar searchQuery={searchQuery} onSearchChange={onSearchChange} />
+      <div className="relative w-full z-40">
+        <SearchBar searchQuery={searchQuery} onSearchChange={onSearchChange} />
+        {citySuggestions.length ? (
+          <SearchCityDropdown cities={citySuggestions} />
+        ) : null}
+      </div>
       <SearchButton />
     </form>
   );

@@ -5,11 +5,9 @@ import { PreferencesProvider } from './context/PreferencesContext.jsx';
 import { WeatherDataProvider } from './context/WeatherDataContext.jsx';
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <WeatherDataProvider>
-      <PreferencesProvider>
-        <App />
-      </PreferencesProvider>
-    </WeatherDataProvider>
-  </StrictMode>,
+  <WeatherDataProvider>
+    <PreferencesProvider>
+      <App />
+    </PreferencesProvider>
+  </WeatherDataProvider>,
 );
