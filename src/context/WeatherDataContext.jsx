@@ -15,6 +15,7 @@ export function WeatherDataProvider({ children }) {
     fetchCitySuggestions,
     fetchWeatherData,
     fetchWeatherByButton,
+    setCitySuggestions,
   } = useWeather();
 
   return (
@@ -29,6 +30,7 @@ export function WeatherDataProvider({ children }) {
         fetchCitySuggestions,
         fetchWeatherData,
         fetchWeatherByButton,
+        setCitySuggestions,
       }}
     >
       {children}

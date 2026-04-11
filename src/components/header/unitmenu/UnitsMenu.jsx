@@ -1,8 +1,9 @@
 import cog from '../../../assets/images/icon-units.svg';
 import icon_dropdown from '../../../assets/images/icon-dropdown.svg';
 import UnitsMenuGroup from './UnitsMenuGroup';
-import { useState, useContext } from 'react';
+import { useState, useContext, useRef } from 'react';
 import { PreferencesContext } from '../../../context/PreferencesContext';
+import useClickOutside from '../../../hooks/useClickOutside';
 
 const WEATHER_UNITS_CONFIG = [
   {
@@ -28,17 +29,22 @@ const WEATHER_UNITS_CONFIG = [
 const UnitsMenu = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { isMetricSystem, toggleUnitSystem } = useContext(PreferencesContext);
-
-  const switchMetricsButtonlabel = isMetricSystem
-    ? 'Switch to Imperial'
-    : 'Switch to Metrics';
+  const ref = useRef(null);
 
   const handleClick = () => {
     setIsDropdownOpen((prev) => !prev);
   };
 
+  useClickOutside(ref, () => {
+    if (isDropdownOpen) handleClick();
+  });
+
+  const switchMetricsButtonlabel = isMetricSystem
+    ? 'Switch to Imperial'
+    : 'Switch to Metrics';
+
   return (
-    <div className="relative flex flex-col">
+    <div ref={ref} className="relative flex flex-col">
       <button
         onClick={handleClick}
         className="flex justify-center items-center gap-1.5 px-2.5 py-2 bg-neutral-800 rounded-md hover:bg-neutral-700 cursor-pointer"
