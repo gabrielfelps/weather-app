@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export default function useWeather() {
   const [isSearchingCities, setIsSearchingCities] = useState(false);
@@ -103,6 +103,10 @@ export default function useWeather() {
       setIsLoading(false);
     }
   }
+
+  useEffect(() => {
+    fetchWeatherData(45.49902, -73.59793);
+  }, []);
 
   return {
     weatherData,
