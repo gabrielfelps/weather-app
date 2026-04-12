@@ -16,6 +16,8 @@ export function WeatherDataProvider({ children }) {
     fetchWeatherData,
     fetchWeatherByButton,
     setCitySuggestions,
+    currentCity,
+    setCurrentCity,
   } = useWeather();
 
   return (
@@ -31,6 +33,8 @@ export function WeatherDataProvider({ children }) {
         fetchWeatherData,
         fetchWeatherByButton,
         setCitySuggestions,
+        currentCity,
+        setCurrentCity,
       }}
     >
       {children}

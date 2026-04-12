@@ -7,6 +7,7 @@ export default function useWeather() {
   const [apiError, setApiError] = useState(false);
   const [citySuggestions, setCitySuggestions] = useState([]);
   const [weatherData, setWeatherData] = useState(null);
+  const [currentCity, setCurrentCity] = useState({ city: '', country: '' });
 
   const fetchCitySuggestions = useCallback(async (city) => {
     if (!city.trim()) {
@@ -94,8 +95,11 @@ export default function useWeather() {
 
       const lat = results[0].latitude;
       const lon = results[0].longitude;
+      const cityName = results[0].name;
+      const countryName = results[0].country;
 
       await fetchWeatherData(lat, lon);
+      setCurrentCity({ city: cityName, country: countryName });
     } catch (error) {
       console.error(error);
       setApiError(true);
@@ -106,6 +110,7 @@ export default function useWeather() {
 
   useEffect(() => {
     fetchWeatherData(45.49902, -73.59793);
+    setCurrentCity({ city: 'Montreal', country: 'Canada' });
   }, []);
 
   return {
@@ -119,5 +124,7 @@ export default function useWeather() {
     fetchWeatherData,
     fetchWeatherByButton,
     setCitySuggestions,
+    currentCity,
+    setCurrentCity,
   };
 }
