@@ -1,5 +1,5 @@
 import CurrentWeatherBoard from './CurrentWeatherBoard';
-import DailyForescastList from '../weather/dailyforecast/DailyForescastList';
+import DailyForecastList from '../weather/dailyforecast/DailyForecastList';
 import HourlyForecastList from '../weather/hourlyforecast/HourlyForecastList';
 import WeatherDetails from '../weather/weatherdetails/WeatherDetails';
 
@@ -9,7 +9,7 @@ function WeatherComponents() {
       <div className="flex-1">
         <CurrentWeatherBoard />
         <WeatherDetails />
-        <DailyForescastList />
+        <DailyForecastList />
       </div>
       <div className="xl:relative w-full min-h-0 xl:w-87.5 shrink-0">
         <HourlyForecastList />
