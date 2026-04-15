@@ -1,5 +1,5 @@
-import formatDate from '../../../../utils/formatDate';
-import getWeatherIcon from '../../../../utils/getWeatherIcon';
+import formatDate from '@/utils/formatDate';
+import getWeatherIcon from '@/utils/getWeatherIcon';
 
 function DailyForecastCard({ date, icon, maxTemp, minTemp }) {
   return (

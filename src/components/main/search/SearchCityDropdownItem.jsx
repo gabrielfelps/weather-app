@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { WeatherDataContext } from '../../../context/WeatherDataContext';
+import { WeatherDataContext } from '@/context/WeatherDataContext';
 
 function SearchCityDropdownItem({ name, complement, latitude, longitude }) {
   const { fetchWeatherData, setCurrentCity } = useContext(WeatherDataContext);

@@ -1,4 +1,4 @@
-import checkmark from '../../../assets/images/icon-checkmark.svg';
+import checkmark from '@/assets/images/icon-checkmark.svg';
 
 function UnitsMenuGroup({ title, metric, imperial, checked }) {
   return (

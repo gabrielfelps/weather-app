@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { WeatherDataContext } from '../../../context/WeatherDataContext';
-import getWeatherIcons from '../../../utils/getWeatherIcon';
+import { WeatherDataContext } from '@/context/WeatherDataContext';
+import getWeatherIcons from '@/utils/getWeatherIcon';
 
 function CurrentWeatherBoard() {
   const { weatherData, isLoading, currentCity } =

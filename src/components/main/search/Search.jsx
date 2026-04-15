@@ -1,10 +1,10 @@
 import { useState, useContext, useEffect, useRef } from 'react';
 import SearchBar from './SearchBar';
 import SearchButton from './SearchButton';
-import { WeatherDataContext } from '../../../context/WeatherDataContext';
-import useDebounce from '../../../hooks/useDebounce';
+import { WeatherDataContext } from '@/context/WeatherDataContext';
+import useDebounce from '@/hooks/useDebounce';
 import SearchCityDropdown from './SearchCityDropdown';
-import useClickOutside from '../../../hooks/useClickOutside';
+import useClickOutside from '@/hooks/useClickOutside';
 
 function Search() {
   const [searchQuery, setsearchQuery] = useState('');

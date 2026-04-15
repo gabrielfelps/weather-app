@@ -1,5 +1,5 @@
 import DetailCard from './DetailCard';
-import { WeatherDataContext } from '../../../../context/WeatherDataContext';
+import { WeatherDataContext } from '@/context/WeatherDataContext';
 import { useContext } from 'react';
 
 export default function WeatherDetails() {

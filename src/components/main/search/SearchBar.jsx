@@ -1,4 +1,4 @@
-import icon_search from '../../../assets/images/icon-search.svg';
+import icon_search from '@/assets/images/icon-search.svg';
 
 function SearchBar({ searchQuery, onSearchChange }) {
   return (

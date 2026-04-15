@@ -1,9 +1,9 @@
-import cog from '../../../assets/images/icon-units.svg';
-import icon_dropdown from '../../../assets/images/icon-dropdown.svg';
+import cog from '@/assets/images/icon-units.svg';
+import icon_dropdown from '@/assets/images/icon-dropdown.svg';
 import UnitsMenuGroup from './UnitsMenuGroup';
 import { useState, useContext, useRef } from 'react';
-import { PreferencesContext } from '../../../context/PreferencesContext';
-import useClickOutside from '../../../hooks/useClickOutside';
+import { PreferencesContext } from '@/context/PreferencesContext';
+import useClickOutside from '@/hooks/useClickOutside';
 
 const WEATHER_UNITS_CONFIG = [
   {

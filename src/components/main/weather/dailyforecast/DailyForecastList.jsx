@@ -1,5 +1,5 @@
 import DailyForecastCard from './DailyForecastCard';
-import { WeatherDataContext } from '../../../../context/WeatherDataContext';
+import { WeatherDataContext } from '@/context/WeatherDataContext';
 import { useContext } from 'react';
 import DailyForecastSkeletonCard from './DailyForecastSkeletonCard';
 
