@@ -4,47 +4,28 @@ import {
   ListboxOption,
   ListboxOptions,
 } from '@headlessui/react';
-import { useState } from 'react';
+import { useContext } from 'react';
+import { WeatherDataContext } from '@/context/WeatherDataContext';
 import icon_dropdown from '@/assets/images/icon-dropdown.svg';
+import formatDate from '@/utils/formatDate';
 
-const weekDays = [
-  {
-    id: 1,
-    day: 'Tuesday',
-  },
-  {
-    id: 2,
-    day: 'Wednesday',
-  },
-  {
-    id: 3,
-    day: 'Thursday',
-  },
-  {
-    id: 4,
-    day: 'Friday',
-  },
-  {
-    id: 5,
-    day: 'Saturday',
-  },
-  {
-    id: 6,
-    day: 'Sunday',
-  },
-  {
-    id: 7,
-    day: 'Monday',
-  },
-];
+function HourlyForecastSelect({ selectedDayIndex, setSelectedDayIndex }) {
+  const { weatherData } = useContext(WeatherDataContext);
+  const weekDayArr = weatherData?.daily.time;
 
-function HourlyForecastSelect() {
-  const [selectedDay, setSelectedDay] = useState(weekDays[0]);
+  const getDayLabel = (dateString, i) => {
+    if (i === 0) return 'Today';
+    if (i === 1) return 'Tomorrow';
+
+    return formatDate(dateString, 'long');
+  };
 
   return (
-    <Listbox value={selectedDay} onChange={setSelectedDay}>
-      <ListboxButton className="flex px-4 py-2 justify-center items-center gap-3 bg-neutral-600 rounded-lg">
-        {selectedDay.day}
+    <Listbox value={selectedDayIndex} onChange={setSelectedDayIndex}>
+      <ListboxButton className="flex px-4 py-2 justify-center items-center gap-3 bg-neutral-600 rounded-lg cursor-pointer">
+        {!weatherData
+          ? '–'
+          : getDayLabel(weekDayArr[selectedDayIndex], selectedDayIndex)}
         <img src={icon_dropdown} alt="" />
       </ListboxButton>
 
@@ -52,13 +33,13 @@ function HourlyForecastSelect() {
         anchor={{ to: 'bottom end', gap: 10 }}
         className="flex flex-col items-center gap-1 p-2 bg-neutral-800 border border-neutral-600 rounded-xl shadow-[0_8px_16px_0_rgba(2,1,44,0.32)] z-50 overflow-auto max-h-60 scrollbar-hidden"
       >
-        {weekDays.map((weekDay) => (
+        {weekDayArr?.map((dateString, i) => (
           <ListboxOption
-            key={weekDay.id}
-            value={weekDay}
+            key={dateString}
+            value={i}
             className="flex self-stretch items-center gap-2.5 text-left px-2 py-2.5 rounded-lg data-focus:bg-neutral-700 min-w-49.5"
           >
-            {weekDay.day}
+            {getDayLabel(dateString, i)}
           </ListboxOption>
         ))}
       </ListboxOptions>
