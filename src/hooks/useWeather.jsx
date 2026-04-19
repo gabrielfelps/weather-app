@@ -108,8 +108,8 @@ export default function useWeather() {
   }
 
   useEffect(() => {
-    fetchWeatherData(45.49902, -73.59793);
-    setCurrentCity({ city: 'Montreal', country: 'Canada' });
+    fetchWeatherData(-12.9714, -38.5014);
+    setCurrentCity({ city: 'Salvador', country: 'Brazil' });
   }, []);
 
   return {

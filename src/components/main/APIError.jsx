@@ -17,7 +17,7 @@ function APIError() {
         moments.
       </p>
       <button
-        onClick={() => fetchWeatherByButton(currentCity || 'Montreal')}
+        onClick={() => fetchWeatherByButton(currentCity.city || 'Salvador')}
         className="flex px-4 py-3 justify-center items-center gap-2.5 rounded-lg bg-neutral-800 cursor-pointer"
       >
         <img src={icon_retry} alt="" />
