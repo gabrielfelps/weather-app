@@ -1,13 +1,16 @@
+import { useContext, useState } from 'react';
+import { WeatherDataContext } from '@/context/WeatherDataContext';
+import { PreferencesContext } from '@/context/PreferencesContext';
+import { celsiusToFahrenheit } from '@/utils/unitConverter';
 import getWeatherIcon from '@/utils/getWeatherIcon';
 import HourlyForecastCard from './HourlyForecastCard';
 import HourlyForecastSelect from './HourlyForecastSelect';
-import { WeatherDataContext } from '@/context/WeatherDataContext';
-import { useContext, useState } from 'react';
 import HourlyForecastSkeletonCard from './HourlyForecastSkeletonCard';
 
 function HourlyForecastList() {
   const [selectedDayIndex, setSelectedDayIndex] = useState(0);
   const { weatherData, isLoading } = useContext(WeatherDataContext);
+  const { isMetricSystem } = useContext(PreferencesContext);
   const start = selectedDayIndex * 24;
   const end = start + 24;
 
@@ -31,7 +34,9 @@ function HourlyForecastList() {
         id: hourString,
         icon: icon,
         time: formattedHour,
-        temp: `${Math.floor(weatherData.hourly.temperature_2m[indexPosition])}°`,
+        temp: isMetricSystem
+          ? `${Math.floor(weatherData.hourly.temperature_2m[indexPosition])}°`
+          : `${Math.floor(celsiusToFahrenheit(weatherData.hourly.temperature_2m[indexPosition]))}°`,
       };
     });
 

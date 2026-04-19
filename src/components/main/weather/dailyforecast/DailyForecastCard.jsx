@@ -12,12 +12,8 @@ function DailyForecastCard({ date, icon, maxTemp, minTemp }) {
         alt=""
       />
       <div className="flex self-stretch justify-between">
-        <p className="text-neutral-0 text-center leading-[120%]">{`${Math.floor(
-          maxTemp,
-        )}°`}</p>
-        <p className="text-neutral-200 text-center leading-[120%]">{`${Math.floor(
-          minTemp,
-        )}°`}</p>
+        <p className="text-neutral-0 text-center leading-[120%]">{maxTemp}</p>
+        <p className="text-neutral-200 text-center leading-[120%]">{minTemp}</p>
       </div>
     </div>
   );

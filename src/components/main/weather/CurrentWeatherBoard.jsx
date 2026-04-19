@@ -1,10 +1,14 @@
 import { useContext } from 'react';
 import { WeatherDataContext } from '@/context/WeatherDataContext';
+import { PreferencesContext } from '@/context/PreferencesContext';
 import getWeatherIcons from '@/utils/getWeatherIcon';
+import { celsiusToFahrenheit } from '@/utils/unitConverter';
 
 function CurrentWeatherBoard() {
   const { weatherData, isLoading, currentCity } =
     useContext(WeatherDataContext);
+  const { isMetricSystem } = useContext(PreferencesContext);
+
   if (!weatherData && !isLoading) return null;
 
   const apiDateString = weatherData?.current.time;
@@ -22,6 +26,11 @@ function CurrentWeatherBoard() {
 
     formattedDate = formatter.format(date);
   }
+
+  const currentTemp = weatherData?.current.temperature_2m;
+  const displayTemp = isMetricSystem
+    ? Math.floor(currentTemp)
+    : Math.floor(celsiusToFahrenheit(currentTemp));
 
   return (
     <div
@@ -54,7 +63,7 @@ function CurrentWeatherBoard() {
               alt=""
             />
             <p className="text-8xl italic font-semibold leading-[100%] tracking-[-1.92px] pr-4">
-              {`${Math.floor(weatherData?.current.temperature_2m)}°`}
+              {`${displayTemp}°`}
             </p>
           </div>
         </>

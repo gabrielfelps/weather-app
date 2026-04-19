@@ -6,12 +6,7 @@ export const PreferencesContext = createContext();
 export function PreferencesProvider({ children }) {
   const [isMetricSystem, setIsMetricSystem] = useState(() => {
     const savedUserSettings = localStorage.getItem('isMetric');
-
-    if (savedUserSettings === null) {
-      return true;
-    }
-
-    return savedUserSettings === 'true';
+    return savedUserSettings !== null ? JSON.parse(savedUserSettings) : true;
   });
 
   useEffect(() => {

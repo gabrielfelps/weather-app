@@ -1,16 +1,23 @@
-import DailyForecastCard from './DailyForecastCard';
-import { WeatherDataContext } from '@/context/WeatherDataContext';
 import { useContext } from 'react';
+import { WeatherDataContext } from '@/context/WeatherDataContext';
+import { PreferencesContext } from '@/context/PreferencesContext';
+import { celsiusToFahrenheit } from '@/utils/unitConverter';
+import DailyForecastCard from './DailyForecastCard';
 import DailyForecastSkeletonCard from './DailyForecastSkeletonCard';
 
 function DailyForecastList() {
   const { weatherData, isLoading } = useContext(WeatherDataContext);
+  const { isMetricSystem } = useContext(PreferencesContext);
 
   const weekDaysWeather = weatherData?.daily.time.map((date, i) => ({
     id: i,
     date: date,
-    maxTemp: weatherData.daily.temperature_2m_max[i],
-    minTemp: weatherData.daily.temperature_2m_min[i],
+    maxTemp: isMetricSystem
+      ? `${Math.floor(weatherData.daily.temperature_2m_max[i])}°`
+      : `${Math.floor(celsiusToFahrenheit(weatherData.daily.temperature_2m_max[i]))}°`,
+    minTemp: isMetricSystem
+      ? `${Math.floor(weatherData.daily.temperature_2m_min[i])}°`
+      : `${Math.floor(celsiusToFahrenheit(weatherData.daily.temperature_2m_min[i]))}°`,
     icon: weatherData.daily.weather_code[i],
   }));
 
