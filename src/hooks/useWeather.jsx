@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 export default function useWeather() {
   const [isSearchingCities, setIsSearchingCities] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [foundResults, setFoundResults] = useState(false);
+  const [foundResults, setFoundResults] = useState(true);
   const [apiError, setApiError] = useState(false);
   const [citySuggestions, setCitySuggestions] = useState([]);
   const [weatherData, setWeatherData] = useState(null);
@@ -26,7 +26,6 @@ export default function useWeather() {
 
       const { results } = await response.json();
       if (!results) {
-        setFoundResults(false);
         setCitySuggestions([]);
         return;
       }
