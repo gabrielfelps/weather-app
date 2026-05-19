@@ -7,7 +7,7 @@ import snow from '../assets/images/icon-snow.webp';
 import storm from '../assets/images/icon-storm.webp';
 import sunny from '../assets/images/icon-sunny.webp';
 
-const weatherIcons = {
+const weatherIcons: Record<number, string> = {
   0: sunny,
 
   1: partly_cloudy,
@@ -45,6 +45,6 @@ const weatherIcons = {
   99: storm,
 };
 
-export default function getWeatherIcon(code) {
+export default function getWeatherIcon(code: number): string {
   return weatherIcons[code] || sunny;
 }
