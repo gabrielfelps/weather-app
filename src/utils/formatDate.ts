@@ -3,7 +3,7 @@ type weekDayValue = 'long' | 'short' | 'narrow';
 export default function formatDate(
   dateString: string,
   weekDayValue: weekDayValue = 'short',
-) {
+): string {
   const date = dateString + 'T12:00:00';
   const dateObj = new Date(date);
 
